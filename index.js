@@ -22,8 +22,7 @@ app.use('/files',express.static(__dirname+'/public'));
 
 //Server Manager
 //use for GET requests
-app.get('/', function(request, response) 
-{
+app.get('/', function(request, response) {
 	bind.toFile(
 		'tpl/form.tpl',
 		{
@@ -37,7 +36,7 @@ app.get('/', function(request, response)
 });
 
 
-//app.post(bodyParser.urlencoded({ extended: false }));
+app.post(bodyParser.urlencoded({ extended: false }));
 
 //use for POST requests of delete
 app.post('/delete', function(request, response){
@@ -116,13 +115,12 @@ app.post('/insert',function(request,response){
 			}else{
 				employee.id=parseInt(id);
 			}
-		}
-		else{
+		}else{
 			error = true;
 		}
 		if(typeof request.body.iName !== 'undefined' && request.body.iName){
 			employee.name=request.body.iName;
-		else{
+		}else{
 			error = true;
 		}
 		if(typeof request.body.iSurname !== 'undefined' && request.body.iSurname){
@@ -141,7 +139,7 @@ app.post('/insert',function(request,response){
 			error = true;
 		}
 		if(error){
-			response.writeHead(409);
+			response.writeHead(409,{});
 			response.end("Incorrect data sent with the request");
 		}else{
 			myLib.addEmployee(employee);
@@ -155,8 +153,7 @@ app.post('/insert',function(request,response){
 					reponse.end(data);
 				}
 			);
-		}
-			
+		}	
 	}else{
 		console.log("Request body not defined");
 	}

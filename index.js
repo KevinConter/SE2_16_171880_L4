@@ -17,31 +17,21 @@ app.set('port', (process.env.PORT || 8848));
 
 
 //create a server
-app.get('/', function(request, response) 
-{
+app.get('/', function(request, response){
 	bind.toFile(
 		'tpl/form.tpl',
-		{},
+		{
+			finded:false
+		},
 		function(data){
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
 		}
 	);
-			
-	
-
-    //get GET
-    /*var url_parts = url.parse(request.url, true);
-    var getVar = url_parts.query; //aggancio un nuovo attributo
-	
-    var text = 'GET: ' +util.inspect(getVar);
-
-    response.end(text);
-  	*/
 });
 
 
-app.post(bodyParser.urlencoded({ extended: false }));
+//app.post(bodyParser.urlencoded({ extended: false }));
 
 /*
 //use for POST

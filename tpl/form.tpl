@@ -3,6 +3,10 @@
 	<head>
 		<title>Employee Manager</title>
 		<meta charset="UTF-8">
+		<!--
+		<script type="text/javascript" scr="script/script.js"></script>
+		<link rel="stylesheet" href="style.css">
+		-->
 	</head>
 	<body>
 		<h3>Employee Manager</h3>
@@ -15,17 +19,19 @@
 			<input type="reset" value="Reset">
 			<hr>
 			<input type="button" onclick="" value="Show/Hide employee">
-			<div id="employe">
+			<br>
+			<div id="employee" (:if[finded] ~ [:then ~ class="visible":][:else ~ class="hidden":]:)>
+				<br>
 				<label for="iID">Employee ID</label><br>
-				<input type="number" id="iID" name="iID" placeholder="Insert an ID"><br>
+				<input type="number" id="iID" name="iID" placeholder="Insert an ID" value="(:id:)"><br>
 				<label for="iName">Name</label><br>
-				<input type="text" id="iName" name="iName" placeholder="Insert name"></br>
+				<input type="text" id="iName" name="iName" placeholder="Insert name" value="(:name:)"></br>
 				<label for="iSurname">Surname</label><br>
-				<input type="text" id="iSurname" name="iSurname" placeholder="Insert surname"></br>
+				<input type="text" id="iSurname" name="iSurname" placeholder="Insert surname" value="(:surname:)"></br>
 				<label for="iLevel">Level</label><br>
-				<input type="number" id="iLevel" name="iLevel" placeholder="Insert a Level"><br>
+				<input type="number" id="iLevel" name="iLevel" placeholder="Insert a Level" value="(:level:)"><br>
 				<label for="iSalary">Salary</label><br>
-				<input type="number" id="iSalary" name="iSalary" placeholder="Insert a salary"><br>
+				<input type="text" id="iSalary" name="iSalary" placeholder="Insert a salary" value="(:salary:)"><br>
 				<input type="button" onclick="" value="Send data">
 				<input type="reset" value="Reset">
 			</div>

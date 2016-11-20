@@ -1,0 +1,24 @@
+{
+  "name": "se2_16_171880_l4",
+  "version": "1.0.0",
+  "description": "Progetto del 17-11-2016: Server Node.js con applicazione per la gestione di lavoratori.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KevinConter/SE2_16_171880_L4.git"
+  },
+  "author": "Kevin Conter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KevinConter/SE2_16_171880_L4/issues"
+  },
+  "homepage": "https://github.com/KevinConter/SE2_16_171880_L4#readme",
+  "dependencies": {
+    "bind": "^0.1.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}

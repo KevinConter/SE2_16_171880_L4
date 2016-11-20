@@ -1,7 +1,7 @@
 //express lib
 var express = require('express');
 //inspect
-var util = require('util');
+//var util = require('util');
 //bind to file
 var bind = require('bind');
 //POST

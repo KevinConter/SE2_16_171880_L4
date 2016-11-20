@@ -15,11 +15,11 @@ var app = express();
 
 //listen in a specific port
 app.set('port', (process.env.PORT || 8848));
-
+//set the server to respond to a file request
 app.use('/files',express.static(__dirname+'/public'));
 
-
-//create a server
+//Server Manager
+//use for GET requests
 app.get('/', function(request, response) 
 {
 	bind.toFile(
@@ -35,9 +35,8 @@ app.get('/', function(request, response)
 
 app.post(bodyParser.urlencoded({ extended: false }));
 
-
-//use for POST
-app.post('/', function(request, response) 
+//use for POST requests of delete
+app.post('/delete', function(request, response) 
 {
     //Set header for the response
 	response.writeHead(200, {'Content-Type': 'text/html'});

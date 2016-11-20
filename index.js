@@ -13,9 +13,10 @@ var myLib = require('./lib/lib.js');
 //instantiate express
 var app = express();
 
-
 //listen in a specific port
 app.set('port', (process.env.PORT || 8848));
+
+app.use('/files',express.static(__dirname+'/public'));
 
 
 //create a server

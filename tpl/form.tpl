@@ -3,10 +3,8 @@
 	<head>
 		<title>Employee Manager</title>
 		<meta charset="UTF-8">
-		<!--
-		<script type="text/javascript" scr="script/script.js"></script>
-		<link rel="stylesheet" href="style.css">
-		-->
+		<script type="text/javascript" src="files/js/script.js"></script>
+		<link rel="stylesheet" href="files/css/style.css">
 	</head>
 	<body>
 		<h3>Employee Manager</h3>

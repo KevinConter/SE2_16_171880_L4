@@ -15,7 +15,7 @@ var app = express();
 
 //listen in a specific port
 app.set('port', (process.env.PORT || 8848));
-
+//Set the server to respond at a file request
 app.use('/files',express.static(__dirname+'/public'));
 
 

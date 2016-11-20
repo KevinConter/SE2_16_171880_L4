@@ -6,63 +6,46 @@ var express = require('express');
 var bind = require('bind');
 //POST
 var bodyParser = require('body-parser');
+//Aggiunta libreria
+var myLib = require('./lib/lib.js');
 
 
 //instantiate express
 var app = express();
 
-
 //listen in a specific port
 app.set('port', (process.env.PORT || 8848));
+//Set the server to respond at a file request
+app.use('/files',express.static(__dirname+'/public'));
 
 
 //create a server
-app.get('/', function(request, response) 
-{
+app.get('/', function(request, response){
 	bind.toFile(
 		'tpl/form.tpl',
-		{},
+		{
+			finded:false
+		},
 		function(data){
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
 		}
 	);
-			
-	
-
-    //get GET
-    /*var url_parts = url.parse(request.url, true);
-    var getVar = url_parts.query; //aggancio un nuovo attributo
-	
-    var text = 'GET: ' +util.inspect(getVar);
-
-    response.end(text);
-  	*/
 });
 
 
-app.post(bodyParser.urlencoded({ extended: false }));
+//app.post(bodyParser.urlencoded({ extended: false }));
 
-/*
+
 //use for POST
 app.post('/', function(request, response) 
 {
-    //set the headers of the responce
-    var headers = {};
-    headers["Access-Control-Allow-Origin"] = "*"; //for cross enviroment request
-    headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";//methods allowed to responce
-    headers["Access-Control-Allow-Credentials"] = false;
-    headers["Access-Control-Max-Age"] = '86400'; // 24 hours
-    headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"; //type of headers
-    //answer
-    headers["Content-Type"] = "application/json";//format response
-    response.writeHead(200, headers);
+    //Set header for the response
+	response.writeHead(200, {'Content-Type': 'text/html'});
+	/*var text = '';
 
-	var text = '';
-
-	if ( typeof request.body !== 'undefined' && request.body)
-	{
-        //the ontent of the POST receiced
+	if ( typeof request.body !== 'undefined' && request.body){
+        //the content of the POST receiced
 		text = "request.body: " + util.inspect(request.body) + "\n";
 		
         //content of the post
@@ -103,8 +86,8 @@ app.post('/', function(request, response)
     
     //send JSON
     response.end(json);
-
-});*/
+	*/
+});
 
 app.listen('8848','127.0.0.1');
 

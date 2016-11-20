@@ -7,16 +7,16 @@
 		<link rel="stylesheet" href="files/css/style.css">
 	</head>
 	<body>
-		<h3>Employee Manager</h3>
+		<h3 class="center">Employee Manager</h3>
 		<hr>
-		<form action="/" method="POST">
+		<form method="POST">
 			<label for="iSD">Search/Delete by ID</label>
-			<input type="number" id="iSDID" name="iSD" placeholder="Insert an ID">
-			<input type="button" onclick="" value="Search">
-			<input type="button" onclick="" value="Delete">
+			<input type="number" id="iSD" name="iSD" placeholder="Insert an ID">
+			<input type="button" onclick="searchEmployee(this.form)" value="Search">
+			<input type="button" onclick="deleteEmployee(this.form)" value="Delete">
 			<input type="reset" value="Reset">
 			<hr>
-			<input type="button" onclick="" value="Show/Hide employee">
+			<input type="button" onclick="showHide()" value="Show/Hide employee">
 			<br>
 			<div id="employee" (:if[finded] ~ [:then ~ class="visible":][:else ~ class="hidden":]:)>
 				<br>
@@ -30,7 +30,7 @@
 				<input type="number" id="iLevel" name="iLevel" placeholder="Insert a Level" value="(:level:)"><br>
 				<label for="iSalary">Salary</label><br>
 				<input type="text" id="iSalary" name="iSalary" placeholder="Insert a salary" value="(:salary:)"><br>
-				<input type="button" onclick="" value="Send data">
+				<input type="button" onclick="addEmployee(this.form)" value="Send data">
 				<input type="reset" value="Reset">
 			</div>
 		</form>

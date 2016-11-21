@@ -117,7 +117,7 @@ app.post('/insert',function(request,response){
 			}
 		}
 		else{
-			error = true;
+			employee.id=myLib.getNextId();
 		}
 		if(typeof request.body.iName !== 'undefined' && request.body.iName){
 			employee.name=request.body.iName;

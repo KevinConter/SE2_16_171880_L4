@@ -36,7 +36,7 @@ app.get('/', function(request, response)
 });
 
 
-app.post(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //use for POST requests of delete
 app.post('/delete', function(request, response){
@@ -106,7 +106,7 @@ app.post('/search',function(request,response){
 
 app.post('/insert',function(request,response){
 	if(typeof request.body !== 'undefined' && request.body){
-		var employee = myLib.Employee(-1,"","",-1,-1);
+		var employee = new myLib.Employee();
 		var error = false;
 		if(typeof request.body.iID !== 'undefined' && request.body.iID){
 			var id = request.body.iID;
@@ -154,8 +154,7 @@ app.post('/insert',function(request,response){
 					reponse.end(data);
 				}
 			);
-		}
-			
+		}	
 	}else{
 		console.log("Request body not defined");
 	}

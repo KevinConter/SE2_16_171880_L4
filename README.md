@@ -12,13 +12,16 @@ oggetti di tipo employee; questo file viene incluso dal server, perciò è neces
 
 All'interno della directory public possono essere inseriti tutti i file che il client richiede al server, come
 ad esempio i file javascript e css che vengono utilizzati dal browser, oppure le immagini...
+Sono presenti in essa due sottodirectory:
+	-css: contiene fogli di stile per le pagine;
+	-js: contiene i file javascript per il browser.
 
 All'interno della directory tpl sono inseriti i template utilizzati dal server per impaginare i dati da mostrare
 al client.
 
-----------------------  PER TESTARE L'APPLICAZIONE  --------------------------------------
+----------------------  PER TESTARE L'APPLICAZIONE  -----------------------
 Per poter eseguire l'applicazione è sufficiente far partire il server Node.js con il file index.js che contiene le funzioni
 per la creazione e la gestione del server.
 Una volta partito il server, in console viene specificato l'indirizzo e la porta utilizzata da inserire nel browser,
-oppure direttamente cliccando sul link nel terminale.
+oppure direttamente cliccando sul link nella console.
 Appena il browser si apre, l'applicazione è utilizzabile.

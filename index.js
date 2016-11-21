@@ -1,14 +1,13 @@
+/************* LIBRARIES ***********/
 //express lib
 var express = require('express');
-//inspect
-//var util = require('util');
 //bind to file
 var bind = require('bind');
 //POST
 var bodyParser = require('body-parser');
-//Aggiunta libreria
+//Aggiunta libreria funzioni per gli oggetti employee
 var myLib = require('./lib/lib.js');
-
+/************************************/
 
 //instantiate express
 var app = express();
@@ -19,31 +18,31 @@ app.set('port', (process.env.PORT || 8848));
 //set the server to respond to a file request
 app.use('/files',express.static(__dirname+'/public'));
 
+//set Body-parser on the requests
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 //Server Manager
 //use for GET requests
 app.get('/', function(request, response) {
-	bind.toFile(
+	bind.toFile(	//Binding al file template
 		'tpl/form.tpl',
 		{
-			open: false
+			open: false		//imposta il form come nascosto
 		},
-		function(data){
+		function(data){		//invio della risposta al client
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
 		}
 	);
 });
 
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
 //use for POST requests of delete
 app.post('/delete', function(request, response){
 	if(typeof request.body !== 'undefined' && request.body){
 		if(typeof request.body.iSD !== 'undefined' && request.body.iSD){
 			var idEmployee = parseInt(request.body.iSD);
-			myLib.removeEmployee(idEmployee);
+			myLib.removeEmployee(idEmployee);		//rimozione dell'employee dal sistema
 		}else{
 			console.log("iSD field not defined");
 		}
@@ -51,46 +50,46 @@ app.post('/delete', function(request, response){
 		console.log("Request body not defined");
 	}
 
-	bind.toFile(
+	bind.toFile(	//Binding al file template
 		'tpl/form.tpl',
 		{
-			open: false
+			open: false		//imposta il form come nascosto
 		},
-		function(data){
+		function(data){		//invio della risposta al client
 			response.writeHead(200,{'Content-Type':'text/html'});
 			response.end(data);
 		}
 	);
 });
-
+//use for POST requests of search
 app.post('/search',function(request,response){
 	if(typeof request.body !== 'undefined' && request.body){
 		if(typeof request.body.iSD !== 'undefined' && request.body.iSD){
 			var idEmployee = parseInt(request.body.iSD);
-			var employee = myLib.getEmployee(idEmployee);
-			if(employee=={}){
-				bind.toFile(
+			var employee = myLib.getEmployee(idEmployee);	//Cerca l'employee con l'id ottenuto dal form
+			if(employee=={}){	//Se non esiste
+				bind.toFile(	//Binding al file template
 					'tpl/form.tpl',
 					{
-						open: true
+						open: true		//imposta il form come visibile
 					},
-					function(data){
+					function(data){		//invio della risposta al client
 						response.writeHead(200,{'Content-Type':'text/html'});
 						response.end(data);
 					}
 				);
-			}else{
-				bind.toFile(
+			}else{		//Se esiste
+				bind.toFile(	//Binding al file template
 					'tpl/form.tpl',
 					{
-						open: true,
-						id: employee.id,
+						open: true,		//imposta il form come visibile
+						id: employee.id,	//inserisce i vari dati per compilare il template
 						name: employee.name,
 						surname: employee.surname,
 						level: employee.level,
 						salary: employee.salary
 					},
-					function(data){
+					function(data){		//invio della risposta al client
 						response.writeHead(200,{'Content-Type':'text/html'});
 						response.end(data);
 					}
@@ -104,51 +103,52 @@ app.post('/search',function(request,response){
 	}
 });
 
+//use for POST requests of insert
 app.post('/insert',function(request,response){
 	if(typeof request.body !== 'undefined' && request.body){
-		var employee = new myLib.Employee();
+		var employee = new myLib.Employee();	//Crea un oggetto employee inizializzato
 		var error = false;
 		if(typeof request.body.iID !== 'undefined' && request.body.iID){
 			var id = request.body.iID;
-			if(id==""){
-				employee.id=myLib.getNextId();
+			if(id==""){		//Se il campo è stato inviato dal browser ma l'utente non aveva inserito niente
+				employee.id=myLib.getNextId();		//Imposta come id il prossimo in lista
 			}else{
-				employee.id=parseInt(id);
+				employee.id=parseInt(id);		//Imposta l'id dato dal client
 			}
-		}else{
-			employee.id=myLib.getNextId();
+		}else{		//Se il browser non ha inviato il campo perchè era vuoto (dipende dal browser)
+			employee.id=myLib.getNextId();		//Imposta come id il prossimo in lista
 		}
 		if(typeof request.body.iName !== 'undefined' && request.body.iName){
-			employee.name=request.body.iName;
+			employee.name=request.body.iName;	//Imposta il nome ricevuto
 		}else{
 			error = true;
 		}
 		if(typeof request.body.iSurname !== 'undefined' && request.body.iSurname){
-			employee.surname=request.body.iSurname;
+			employee.surname=request.body.iSurname;		//Imposta il cognome ricevuto
 		}else{
 			error = true;
 		}
 		if(typeof request.body.iLevel !== 'undefined' && request.body.iLevel){
-			employee.level=parseInt(request.body.iLevel);
+			employee.level=parseInt(request.body.iLevel);	//Imposta il livello ricevuto
 		}else{
 			error = true;
 		}
 		if(typeof request.body.iSalary !== 'undefined' && request.body.iSalary){
-			employee.salary=parseInt(request.body.iSalary);
+			employee.salary=parseInt(request.body.iSalary);		//Imposta il salario ricevuto
 		}else{
 			error = true;
 		}
-		if(error){
+		if(error){		//Se uno dei campi non è stato ricevuto
 			response.writeHead(409,{});
 			response.end("Incorrect data sent with the request");
 		}else{
-			myLib.addEmployee(employee);
-			bind.toFile(
+			myLib.addEmployee(employee);		//Aggiunta dell'employee alla lista
+			bind.toFile(	//Binding al file template
 				'tpl/form.tpl',
 				{
-					open: false
+					open: false		//imposta il form come nascosto
 				},
-				function(data){
+				function(data){		//invio della risposta al client
 					response.writeHead(200,{'Content-Type':'text/html'});
 					response.end(data);
 				}
@@ -159,6 +159,7 @@ app.post('/insert',function(request,response){
 	}
 });
 
+//Set the server to listen on a specific port
 app.listen('8848','127.0.0.1');
 
 console.log("Server is running at http://127.0.0.1:8848");

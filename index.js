@@ -151,7 +151,7 @@ app.post('/insert',function(request,response){
 				},
 				function(data){
 					response.writeHead(200,{'Content-Type':'text/html'});
-					reponse.end(data);
+					response.end(data);
 				}
 			);
 		}	

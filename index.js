@@ -128,13 +128,13 @@ app.post('/insert',function(request,response){
 		}else{
 			error = true;
 		}
-		if(typeof request.body.level !== 'undefined' && request.body.level){
-			employee.level=parseInt(request.body.level);
+		if(typeof request.body.iLevel !== 'undefined' && request.body.iLevel){
+			employee.level=parseInt(request.body.iLevel);
 		}else{
 			error = true;
 		}
-		if(typeof request.body.salary !== 'undefined' && request.body.salary){
-			employee.salary=parseInt(request.body.salary);
+		if(typeof request.body.iSalary !== 'undefined' && request.body.iSalary){
+			employee.salary=parseInt(request.body.iSalary);
 		}else{
 			error = true;
 		}

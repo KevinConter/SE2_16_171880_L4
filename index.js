@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
 	bind.toFile(
 		'tpl/form.tpl',
 		{
-			finded: false
+			open: false
 		},
 		function(data){
 			response.writeHead(200, {'Content-Type': 'text/html'});
@@ -54,7 +54,7 @@ app.post('/delete', function(request, response){
 	bind.toFile(
 		'tpl/form.tpl',
 		{
-			finded: false
+			open: false
 		},
 		function(data){
 			response.writeHead(200,{'Content-Type':'text/html'});
@@ -72,7 +72,7 @@ app.post('/search',function(request,response){
 				bind.toFile(
 					'tpl/form.tpl',
 					{
-						finded: true
+						open: true
 					},
 					function(data){
 						response.writeHead(200,{'Content-Type':'text/html'});
@@ -83,7 +83,7 @@ app.post('/search',function(request,response){
 				bind.toFile(
 					'tpl/form.tpl',
 					{
-						finded: true,
+						open: true,
 						id: employee.id,
 						name: employee.name,
 						surname: employee.surname,
@@ -146,7 +146,7 @@ app.post('/insert',function(request,response){
 			bind.toFile(
 				'tpl/form.tpl',
 				{
-					finded: false
+					open: false
 				},
 				function(data){
 					response.writeHead(200,{'Content-Type':'text/html'});

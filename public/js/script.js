@@ -1,7 +1,7 @@
 function showHide(){
 	var div = document.getElementById("employee");
 	if(div.className=="hidden"){
-		reset();
+		resetForm();
 		div.className="visible";
 	}else{
 		div.className="hidden";
@@ -53,7 +53,7 @@ function checkInsert(form){
 	}
 }
 
-function reset(){
+function resetForm(){
 	document.getElementById("iID").value="";
 	document.getElementById("iName").value="";
 	document.getElementById("iSurname").value="";

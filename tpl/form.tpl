@@ -14,7 +14,7 @@
 			<input type="number" id="iSD" name="iSD" placeholder="Insert an ID">
 			<input type="button" onclick="searchEmployee(this.form)" value="Search">
 			<input type="button" onclick="deleteEmployee(this.form)" value="Delete">
-			<input type="button" onclick="reset()" value="Reset">
+			<input type="button" onclick="resetForm()" value="Reset">
 			<hr>
 			<input type="button" onclick="showHide()" value="Show/Hide employee">
 			<br>
@@ -31,7 +31,7 @@
 				<label for="iSalary">Salary</label><br>
 				<input type="text" id="iSalary" name="iSalary" placeholder="Insert a salary" value="(:salary:)"><br>
 				<input type="button" onclick="addEmployee(this.form)" value="Send data">
-				<input type="button" onclick="reset()" value="Reset">
+				<input type="button" onclick="resetForm()" value="Reset">
 			</div>
 		</form>
 	</body>

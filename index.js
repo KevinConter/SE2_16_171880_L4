@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
 	bind.toFile(
 		'tpl/form.tpl',
 		{
-			finded: false
+			open: false
 		},
 		function(data){
 			response.writeHead(200, {'Content-Type': 'text/html'});
@@ -36,7 +36,7 @@ app.get('/', function(request, response) {
 });
 
 
-app.post(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //use for POST requests of delete
 app.post('/delete', function(request, response){
@@ -54,7 +54,7 @@ app.post('/delete', function(request, response){
 	bind.toFile(
 		'tpl/form.tpl',
 		{
-			finded: false
+			open: false
 		},
 		function(data){
 			response.writeHead(200,{'Content-Type':'text/html'});
@@ -72,7 +72,7 @@ app.post('/search',function(request,response){
 				bind.toFile(
 					'tpl/form.tpl',
 					{
-						finded: true
+						open: true
 					},
 					function(data){
 						response.writeHead(200,{'Content-Type':'text/html'});
@@ -83,7 +83,7 @@ app.post('/search',function(request,response){
 				bind.toFile(
 					'tpl/form.tpl',
 					{
-						finded: true,
+						open: true,
 						id: employee.id,
 						name: employee.name,
 						surname: employee.surname,
@@ -106,7 +106,7 @@ app.post('/search',function(request,response){
 
 app.post('/insert',function(request,response){
 	if(typeof request.body !== 'undefined' && request.body){
-		var employee = myLib.Employee(-1,"","",-1,-1);
+		var employee = new myLib.Employee();
 		var error = false;
 		if(typeof request.body.iID !== 'undefined' && request.body.iID){
 			var id = request.body.iID;
@@ -128,13 +128,13 @@ app.post('/insert',function(request,response){
 		}else{
 			error = true;
 		}
-		if(typeof request.body.level !== 'undefined' && request.body.level){
-			employee.level=parseInt(request.body.level);
+		if(typeof request.body.iLevel !== 'undefined' && request.body.iLevel){
+			employee.level=parseInt(request.body.iLevel);
 		}else{
 			error = true;
 		}
-		if(typeof request.body.salary !== 'undefined' && request.body.salary){
-			employee.salary=parseInt(request.body.salary);
+		if(typeof request.body.iSalary !== 'undefined' && request.body.iSalary){
+			employee.salary=parseInt(request.body.iSalary);
 		}else{
 			error = true;
 		}
@@ -146,11 +146,11 @@ app.post('/insert',function(request,response){
 			bind.toFile(
 				'tpl/form.tpl',
 				{
-					finded: false
+					open: false
 				},
 				function(data){
 					response.writeHead(200,{'Content-Type':'text/html'});
-					reponse.end(data);
+					response.end(data);
 				}
 			);
 		}	

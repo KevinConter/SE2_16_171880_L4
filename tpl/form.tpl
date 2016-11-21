@@ -18,7 +18,7 @@
 			<hr>
 			<input type="button" onclick="showHide()" value="Show/Hide employee">
 			<br>
-			<div id="employee" (:if[finded] ~ [:then ~ class="visible":][:else ~ class="hidden":]:)>
+			<div id="employee" (:if[open] ~ [:then ~ class="visible":][:else ~ class="hidden":]:)>
 				<br>
 				<label for="iID">Employee ID</label><br>
 				<input type="number" id="iID" name="iID" placeholder="Insert an ID" value="(:id:)"><br>

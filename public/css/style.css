@@ -1,11 +1,14 @@
+/* Nasconde gli oggetti */
 .hidden{
 	display:none
 }
 
+/* Rende visibili gli oggetti */
 .visible{
 	display:block
 }
 
+/* Centra il testo */
 .center{
 	text-align:center
 }

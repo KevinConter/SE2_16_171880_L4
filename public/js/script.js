@@ -1,6 +1,7 @@
 function showHide(){
 	var div = document.getElementById("employee");
 	if(div.className=="hidden"){
+		resetForm();
 		div.className="visible";
 	}else{
 		div.className="hidden";
@@ -50,4 +51,13 @@ function checkInsert(form){
 	}else{
 		alert("Only the ID field can be empty!!");
 	}
+}
+
+function resetForm(){
+	document.getElementById("iID").value="";
+	document.getElementById("iName").value="";
+	document.getElementById("iSurname").value="";
+	document.getElementById("iLevel").value="";
+	document.getElementById("iSalary").value="";
+	document.getElementById("iSD").value="";
 }

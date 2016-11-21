@@ -29,7 +29,7 @@
 				<label for="iLevel">Level</label><br>
 				<input type="number" id="iLevel" name="iLevel" placeholder="Insert a Level" value="(:level:)"><br>
 				<label for="iSalary">Salary</label><br>
-				<input type="text" id="iSalary" name="iSalary" placeholder="Insert a salary" value="(:salary:)"><br>
+				<input type="number" id="iSalary" name="iSalary" placeholder="Insert a salary" value="(:salary:)"><br>
 				<input type="button" onclick="addEmployee(this.form)" value="Send data">
 				<input type="button" onclick="resetForm()" value="Reset">
 			</div>
